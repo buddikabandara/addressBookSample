@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html style="overflow: hidden">
+<head>
+    <title>Address Book Sample Project</title>
+    <!--styles -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.4/angular-material.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.4/angular-material.layouts.css">
+	
+    <!--scripts-->
+	<script type="text/javascript" src="ang_js/angular.js"></script>
+	<script type="text/javascript" src="ang_js/angular-animate.js"></script>
+	<script type="text/javascript" src="ang_js/angular-aria.js"></script>
+	<script type="text/javascript" src="ang_js/angular-cookies.js"></script>
+	<script type="text/javascript" src="ang_js/angular-message-format.js"></script>
+	<script type="text/javascript" src="ang_js/angular-messages.js"></script>
+	<script type="text/javascript" src="ang_js/angular-route.js"></script>
+	<script type="text/javascript" src="ang_js/angular-hamburger-toggle.js"></script>
+	<script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js'></script>
+	<script type="text/javascript" src='https://cdn.rawgit.com/alenaksu/mdPickers/0.5.2/dist/mdPickers.min.js'></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.4/angular-material.js"></script>
+    
+    
+    <script type="text/javascript" src="app.js"></script>
+	
+    <script type="text/javascript" src="js/services/AddressBookData.js"></script>
+
+    <script type="text/javascript" src="js/controllers/allContactController.js"></script>
+
+    <script type="text/javascript" src="js/directives/addressBookScroll.js"></script>
+    
+
+</head>
+
+<body data-ng-app="addressSampleBook" ng-init="init()" ng-controller="allContactCtrl" layout="column" layout-fill style="overflow: hidden;">
+	<div class="container-fluid" >
+		<md-toolbar class="md-whiteframe-2dp" layout="row"  style="background: #242424;">
+			<div class="md-toolbar-tools ">
+				<h2 style="margin-left:3%;">
+					<span style="color:#FFF;">Sample Address Book</span>
+				</h2>	
+			</div>
+		</md-toolbar>
+		
+	</div>
+	<md-toolbar layout="row" class="md-whiteframe-2dp md-accent" style="background: #E2E2E2; padding: 0 16px;">
+			<div flex="20" layout="raw" layout-align="center">
+				<div class="btn-group" style="margin-top: auto; margin-bottom: auto;">
+						<md-button class="md-raised md-primary" ng-click="showAddContactPopup('a','new')">Add New</md-button>
+				</div>
+			</div>
+			<div flex="40" layout="raw" layout-align="center" style="height: 30px; margin: 18px 0; padding: 0 10px; font-size: 16px;">
+				<div style="padding-top: 5px; color: #242424; font-size: 15px; font-weight : 600;">All Contacts ({{contactCount}})</div>
+			</div>
+			<div flex="40" layout="raw">
+				<div layout="raw" style="margin-top: auto; margin-bottom: auto; width: 70%;">
+					<form flex>
+					<md-autocomplete
+		           		md-input-name="autocompleteContact"
+						ng-disabled="ContactDisable"
+						md-no-cache="true"
+						md-selected-item="selectedItem"
+						md-search-text-change="searchTextChange(searchTextcompany)"
+						md-search-text="searchTextcontact"
+						md-selected-item-change="selectedItemChange(contact)"
+						md-items="contact in contactQuerySearch(searchTextcontact)"
+						md-min-length="0"
+						md-item-text="contact.name">
+						<md-item-template>
+							<span md-highlight-text="searchTextcontact" md-highlight-flags="^i">{{contact.name}}</span>
+						</md-item-template>
+						<md-not-found ng-if="fasle">
+								search for contacts
+						</md-not-found>
+					</md-autocomplete>
+				</form>
+					<div style="padding-top: 5px; color: #242424; font-size: 15px; font-weight : 600;">Search</div>
+				</div>
+			</div>
+		</md-toolbar>
+	<md-content flex layout="column" address-book-scroll > 
+				<section>
+							<md-subheader  style="color: #676767; font-weight : 400;background: #f2f2f2;">
+								<md-list-item >
+										<div style="width:250px; padding-top: 2px;" class="contact-item-h-col">
+											Contact Name
+										</div>
+										<div style="width:200px; padding-top: 2px;" class="contact-item-h-col">
+											Phone No
+										</div>
+										<div style="width:350px; padding-top: 2px;" class="contact-item-h-col">
+											Address
+										</div>
+										<div style="width:200px; padding-top: 2px;" class="contact-item-h-col">
+											Email
+										</div>	
+								</md-list-item>
+							</md-subheader>
+							<md-list class="md-padding" >
+						 			<div layout="row" class="md-padding"  
+						 			flex ng-repeat="contactData in contactView" ng-class="{mhover : hover}" 
+										 			ng-mouseenter="hover = true" 
+										 			ng-mouseleave="hover = false" style="border-bottom: 1px solid #E6E6E6;" >
+										<div style="width:250px; padding-top: 2px;" >
+											<a style="cursor: pointer; color:blue;" ng-click="showAddContactPopup('updateContact',contactData)">{{contactData.name}}</a>
+										</div>
+										<div style="width:200px; padding-top: 2px;">{{contactData.phone}}</div>
+										<div style="width:350px; padding-top: 2px;">{{contactData.address}}</div>
+										<div style="width:200px; padding-top: 2px;">{{contactData.email}}</div>
+									</div>
+							</md-list>
+					</section>	
+		</md-content> 
+</body>
+</html>
