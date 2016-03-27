@@ -1,0 +1,43 @@
+<md-dialog style="width: 50%;" ng-cloak ng-controller="allContactCtrl" >
+	<form >
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h1>{{actionHeading}}</h1>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="closeContactPopup()">
+					<md-icon md-svg-icon="md-close" aria-hidden="true" ></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+		<md-dialog-content id="popupContainer" class="md-padding">
+			<md-input-container class="md-icon-float md-block ">
+		      <!-- Use floating label instead of placeholder -->
+		      <label>Name</label>
+		      <md-icon md-svg-src="img/ic_person_black_24px.svg" class="name"></md-icon>
+		      <input ng-model="name" type="text">
+		    </md-input-container>
+		    <md-input-container md-no-float class="md-block">
+		      <md-icon md-svg-src="img/ic_phone_black_24px.svg"></md-icon>
+		      <input ng-model="phone" type="text" placeholder="Phone Number">
+		    </md-input-container>
+		    <md-input-container class="md-block">
+		      <!-- Use floating placeholder instead of label -->
+		      <md-icon md-svg-src="img/ic_email_black_24px.svg" class="email"></md-icon>
+		      <input ng-model="email" type="email" placeholder="Email (required)" ng-required="true">
+		    </md-input-container>
+		    <md-input-container md-no-float class="md-block">
+		    	 <md-icon md-svg-src="img/ic_add_location_black_24px.svg" style="display:inline-block;"></md-icon>
+		      	<input ng-model="address" type="text" placeholder="Address" >
+		     </md-input-container>
+		</md-dialog-content>
+		<md-dialog-actions layout="row">
+			<span flex></span>
+			<md-button ng-click="closeContactPopup()">
+				CANCEL
+			</md-button>
+			<md-button ng-click="addContact(name,phone,email,address)" style="margin-right:20px;" >
+				{{actionDone}}
+			</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>
