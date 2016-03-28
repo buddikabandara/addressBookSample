@@ -112,6 +112,7 @@ sample_AddressBook.controller('allContactCtrl', ['$rootScope','$scope','$mdMedia
 			}
 			if($scope.addContact){
 					$scope.contactView.push($scope.tempContact );
+					$scope.contactCount=$scope.contactView.length;
 			}
 	    		
 	    	$scope.closeContactPopup();	
