@@ -24,7 +24,7 @@
 		      		<md-icon md-svg-src="img/ic_phone_black_24px.svg"></md-icon>
 		      		<input ng-model="phone" type="text"  ng-pattern="/^([0-9]{3}) [0-9]{3}-[0-9]{4}$/">
 		      			<div class="hint" ng-show="showHints">(###) ###-####</div>
-		          		<div ng-messages="userForm.phone.$error" ng-hide="showHints">
+		          		<div ng-messages="projectForm.phone.$error" ng-hide="showHints">
 		            		<div ng-message="pattern">(###) ###-#### - Please enter a valid phone number.</div>
 		          		</div>
 		    </md-input-container>
