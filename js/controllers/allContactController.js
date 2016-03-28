@@ -70,6 +70,10 @@ sample_AddressBook.controller('allContactCtrl', ['$rootScope','$scope','$mdMedia
 			$scope.showSimpleToast("Fill User Name"); 
 			return;
 		}
+		if(email==""){
+			$scope.showSimpleToast("Fill User Email"); 
+			return;
+		}
 		$scope.tempContact = {
 			name : Username,
 			phone:userPhone,
