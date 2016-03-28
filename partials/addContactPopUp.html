@@ -1,5 +1,5 @@
 <md-dialog style="width: 50%;" ng-cloak ng-controller="allContactCtrl" >
-	<form >
+	<form name="projectForm">
 		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<h1>{{actionHeading}}</h1>
@@ -14,21 +14,35 @@
 		      <!-- Use floating label instead of placeholder -->
 		      <label>Name</label>
 		      <md-icon md-svg-src="img/ic_person_black_24px.svg" class="name"></md-icon>
-		      <input ng-model="name" type="text">
+		      <input ng-model="name" type="text" required>
+		       <div ng-messages="projectForm.name.$error">
+		          <div ng-message="required">This is required.</div>
+		        </div>
 		    </md-input-container>
-		    <md-input-container md-no-float class="md-block">
-		      <md-icon md-svg-src="img/ic_phone_black_24px.svg"></md-icon>
-		      <input ng-model="phone" type="text" placeholder="Phone Number">
+		    <md-input-container  class="md-icon-float md-block">
+		    	<label>Phone Number</label>
+		      		<md-icon md-svg-src="img/ic_phone_black_24px.svg"></md-icon>
+		      		<input ng-model="phone" type="text"  ng-pattern="/^([0-9]{3}) [0-9]{3}-[0-9]{4}$/">
+		      			<div class="hint" ng-show="showHints">(###) ###-####</div>
+		          		<div ng-messages="userForm.phone.$error" ng-hide="showHints">
+		            		<div ng-message="pattern">(###) ###-#### - Please enter a valid phone number.</div>
+		          		</div>
 		    </md-input-container>
 		    <md-input-container class="md-block">
-		      <!-- Use floating placeholder instead of label -->
 		      <md-icon md-svg-src="img/ic_email_black_24px.svg" class="email"></md-icon>
-		      <input ng-model="email" type="email" placeholder="Email (required)" ng-required="true">
+		      	<input  name="email" minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" ng-model="email" type="email" placeholder="Email (required)" ng-required="true">
+		     		 <div ng-messages="projectForm.email.$error" role="alert">
+		          		<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+		            		Your email must be between 10 and 100 characters long and look like an e-mail address.
+		          		</div>
+		        </div>
 		    </md-input-container>
-		    <md-input-container md-no-float class="md-block">
+		    <md-input-container  class="md-icon-float md-block">
+		    	<label>Address</label>
 		    	 <md-icon md-svg-src="img/ic_add_location_black_24px.svg" style="display:inline-block;"></md-icon>
-		      	<input ng-model="address" type="text" placeholder="Address" >
+		      	<input ng-model="address" type="text">
 		     </md-input-container>
+		</form>
 		</md-dialog-content>
 		<md-dialog-actions layout="row">
 			<span flex></span>
@@ -39,5 +53,5 @@
 				{{actionDone}}
 			</md-button>
 		</md-dialog-actions>
-	</form>
+	
 </md-dialog>
