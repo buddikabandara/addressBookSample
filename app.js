@@ -3,9 +3,10 @@
 // Declare app level module which depends on other modules
 var sample_AddressBook = angular.module('addressSampleBook', [
 	'ngMaterial',
-    'ngRoute',
+    	'ngRoute',
 	'ngCookies',
-	'ngAnimate'
+	'ngAnimate',
+	'ngMessages'
  ]);
 sample_AddressBook.config(['$compileProvider', function ($compileProvider) {
     $compileProvider.debugInfoEnabled(true); // testing issue #144
